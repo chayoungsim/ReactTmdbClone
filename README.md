@@ -1,18 +1,57 @@
 #  영화 정보 큐레이션 사이트 (Netflix/TMDB 클론)
-핵심 기술: React Router의 심화 활용, 스와이퍼(Swiper.js) 커스텀, 영화 예고편 팝업(유튜브 연동).
-학습 포인트:  **'필터링'과 '슬라이딩 인터랙션'**이 핵심입니다.
-추천 API: TMDB API (무료이며 문서화가 아주 잘 되어 있음)
+- 핵심 기술: React Router의 심화 활용, 스와이퍼(Swiper.js) 커스텀, 영화 예고편 팝업(유튜브 연동).
+- 학습 포인트:  **'필터링'과 '슬라이딩 인터랙션'**이 핵심입니다.
+- 추천 API: TMDB API (무료이며 문서화가 아주 잘 되어 있음)
 
 ## 설치
 ```bash
 npm create vite@latest .(현재폴더에 설치)
 
 ```
-[TMDB](https://www.themoviedb.org/) 
 
+### API_KEY 
+- [TMDB](https://www.themoviedb.org/) : 회원가입 api key생성
+```bash
 .env 파일생성 API_KEY 관리
-VITE_UNSPLASH_ACCESS_KEY=API_KEY
+VITE_UNSPLASH_ACCESS_KEY= API_KEY
 axios.get : client_id: import.meta.env.VITE_UNSPLASH_ACCESS_KEY,
+```
+
+## React Router
+```JavaScript
+npm install react-router-dom
+
+// main.jsx
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+```
+
+## 스와이퍼(Swiper.js) 커스텀
+```JavaScript
+npm install swiper
+
+// 1. Swiper 리액트 컴포넌트 및 스타일 임포트
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+```
+
+## 영화 예고편 팝업(유튜브 연동)
+```bash
+
+```
+
+
+
+### API 사용
 
 ```javascript
 useEffect(() => {
