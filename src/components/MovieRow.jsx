@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import MovieModal from "./MovieModal.jsx";
 import MovieCard from "./MovieCard.jsx";
+import axios from '../api/axios.js';
+
 
 // 1. Swiper 리액트 컴포넌트 및 스타일 임포트
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,7 +23,6 @@ const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 const [movies, setMovies] = useState([]);
     const [selectedMovie, setselectedMovie] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     
     const swiperRef = useRef(null);
 
@@ -42,21 +43,41 @@ const [movies, setMovies] = useState([]);
     }
 
     useEffect(() => {
+        // const fetchMovies = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `${BASE_URL}/movie/${category}?api_key=${API_KEY}&language=en-US`,
+        //         );
+        //         const data = await response.json();
+
+        //         // 2. slice(0, 10)을 사용해 상위 10개만 가져오기
+        //         setMovies(data.results.slice(0, 10));
+        //         console.log(data.results);
+        //     } catch (error) {
+        //         console.error("데이터로딩실패:", error);
+        //     }
+        // };
+        // fetchMovies();
+
         const fetchMovies = async () => {
             try {
-                const response = await fetch(
-                    `${BASE_URL}/movie/${category}?api_key=${API_KEY}&language=ko-KR`,
-                );
-                const data = await response.json();
 
-                // 2. slice(0, 10)을 사용해 상위 10개만 가져오기
-                setMovies(data.results.slice(0, 10));
-                console.log(data.results);
-            } catch (error) {
-                console.error("데이터로딩실패:", error);
+                const response = await axios.get(`/movie/${category}`, {
+                    params: {                        
+                        language: 'en-US',
+                    }
+                });
+
+                const data = response.data;
+                setMovies(data.results);
+
+            } catch(error) {
+                console.error("데이터 로딩 실패",error)
             }
-        };
+        }
+
         fetchMovies();
+
     }, [category]);
 
     const handleSlideChange =(swiper) => {

@@ -2,6 +2,8 @@
 - 핵심 기술: React Router의 심화 활용, 스와이퍼(Swiper.js) 커스텀, 영화 예고편 팝업(유튜브 연동).
 - 학습 포인트:  **'필터링'과 '슬라이딩 인터랙션'**이 핵심입니다.
 - 추천 API: TMDB API (무료이며 문서화가 아주 잘 되어 있음)
+- search 기능
+- 로그인 기능
 
 ## 설치
 ```bash
@@ -46,6 +48,7 @@ import 'swiper/css/pagination';
 
 ## 영화 예고편 팝업(유튜브 연동)
 ```bash
+npm install react-youtube
 
 ```
 
@@ -73,6 +76,11 @@ useEffect(() => {
 ```
 ```javascript
 //axios
+//1. axios get 사용
+import axios from 'axios';
+
+//2. axios는 데이터가 'data' 속성에 담겨 옵니다.(JSON변환 불필요)
+
 try {
     setLoading(true)
     const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`)
@@ -83,6 +91,22 @@ try {
     setLoading(false)
 }
 ```
+```Plaintext
+// .env
+VITE_TMDB_API_KEY=your_key_here
+
+// axios.js에서 사용 시
+params: {
+  api_key: import.meta.env.VITE_TMDB_API_KEY,
+}
+```
 
 ### CSS-in-JS(Styled-components)
+```bash
 $ npm install styled-components
+```
+
+### 상세화면
+- 단독 페이지 방식 useParams 이용
+- 상세화면도 해더 푸터 유지되게 리액트 라우터(react-router-dom)의 Outlet 기능을 사용
+
