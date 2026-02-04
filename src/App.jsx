@@ -1,34 +1,13 @@
+import { Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import Detail from './pages/Detail'
 
-import './App.css'
-import { useState} from 'react'
-import Header from './components/Header.jsx'
-import Profile from './components/Profile.jsx'
-import Footer from './components/Footer.jsx'  
-import TodoInput from './components/TodoInput.jsx'
-import Weather from './components/Weather.jsx'
-
-
-
-function App() {
-    const [count, setCount] = useState(0)
-  
-   
+const App = () => {
   return (
-    <>
-      <Header />
-      <main>
-        <Profile name="홍길동" hobby="코딩" age={25} />
-        <div>
-            <p> 현재숫지 {count}</p>
-            <button type="button" onClick={() => setCount(count+1)}>+1증가</button>
-            <button type="button" onClick={() => setCount(count-1)}>-1감소</button>
-        </div>
-        <Weather />    
-        <TodoInput />
-        
-      </main>
-      <Footer />
-    </>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<Detail />} />
+    </Routes>
   )
 }
 
