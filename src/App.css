@@ -43,6 +43,23 @@ header h1 .logo {
     background-size: cover;
     font-size: 0;
 }
+
+header .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    
+}
+.nav-link {
+    color: #fff;
+}
+
 footer {
     height: 10rem;
     color: rgba(255,255,255,0.5);

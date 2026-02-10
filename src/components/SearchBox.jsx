@@ -9,15 +9,18 @@ const SearchBox = () => {
    const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setSearchValue(e.target.value);
-        navigate(`/search?q=${e.target.value}`);
-        console.log(e.target.value);    
+        e.preventDefault();
+        //setSearchValue(e.target.value);
+        navigate(`/movies?q=${searchValue}`); 
+        setSearchValue("");       
     }
 
   return (
-    <div>
-        <SearchInput type="text" value={searchValue} onChange={handleChange} placeholder="영화를 검색하세요." />
-    </div>
+    <form onSubmit={handleChange}>
+        {/* <SearchInput type="text" value={searchValue} onChange={handleChange} placeholder="영화를 검색하세요." /> */}
+        <SearchInput type="text" value={searchValue} onChange={(event) => setSearchValue(event.target.value)} placeholder="영화를 검색하세요." />
+        <button type="submit">Search</button>
+    </form>
   )
 }
 
